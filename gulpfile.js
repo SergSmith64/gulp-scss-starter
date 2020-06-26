@@ -20,6 +20,7 @@ function scripts() {
     .pipe(concat('app.min.js'))
     .pipe(uglify())
     .pipe(dest('app/js/'))
+    .pipe(browserSync.stream())
 }
 function startwatch() {
   watch(['app/**/*.*', '!app/**/*.min.js'], scripts)

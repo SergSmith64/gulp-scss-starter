@@ -6,6 +6,8 @@ const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cleancss = require('gulp-clean-css');
 const imagemin = require('gulp-imagemin');
+const newer = require('gulp-newer');
+const del = require('del');
 
 function browsersync() {
   browserSync.init({
@@ -39,19 +41,26 @@ function styles() {
 
 function images() {
   return src('app/images/src/**/*')
+  .pipe(newer('app/images/dest/'))
   .pipe(imagemin())
   .pipe(dest('app/images/dest/'))
+}
+
+function cleanimg() {
+  return del('app/images/dest/**/*', { force: true })
 }
 
 function startwatch() {
   watch(['app/**/*.js', '!app/**/*.min.js'], scripts);
   watch('app/**/*.sass', styles);
   watch('app/**/*.html').on('change', browserSync.reload);
+  watch('app/images/src/**/*', images)
 }
 
 exports.browsersync = browsersync;
 exports.scripts = scripts;
 exports.styles = styles;
 exports.images = images;
+exports.cleanimg = cleanimg;
 
 exports.default = parallel(styles, scripts, browsersync, startwatch);

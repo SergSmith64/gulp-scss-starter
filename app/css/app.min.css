@@ -19,6 +19,15 @@ body {
   font-family: sans-serif;
   font-size: 15px
 }
+.navbar a {
+  padding: 3px 12px;
+  background-color: red;
+  margin: 3px
+}
+.navbar a:hover {
+  background-color: #000;
+  color: #fff
+}
 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;

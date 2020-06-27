@@ -31,29 +31,39 @@ function scripts() {
 
 function styles() {
   return src('app/index.sass')
-  .pipe(sass())
-  .pipe(concat('app.min.css'))
-  .pipe(autoprefixer({ overrideBrowserslist: ['last 10 versions'], grid: true }))
-  // .pipe(cleancss(( { level: { 1: { specialComments: 0 } } /*, format: 'beautify' */ } )))
-  .pipe(cleancss(( { level: { 1: { specialComments: 0 } } , format: 'beautify' } )))
-  .pipe(dest('app/css/'))
-  .pipe(browserSync.stream())
+    .pipe(sass())
+    .pipe(concat('app.min.css'))
+    .pipe(autoprefixer({ overrideBrowserslist: ['last 10 versions'], grid: true }))
+    // .pipe(cleancss(( { level: { 1: { specialComments: 0 } } /*, format: 'beautify' */ } )))
+    .pipe(cleancss(({ level: { 1: { specialComments: 0 } }, format: 'beautify' })))
+    .pipe(dest('app/css/'))
+    .pipe(browserSync.stream())
 }
 
 function images() {
   return src('app/images/src/**/*')
-  .pipe(newer('app/images/dest/'))
-  .pipe(imagemin())
-  .pipe(dest('app/images/dest/'))
+    .pipe(newer('app/images/dest/'))
+    .pipe(imagemin())
+    .pipe(dest('app/images/dest/'))
 }
 
 function cleanimg() {
   return del('app/images/dest/**/*', { force: true })
 }
 
-// function buildcopy() {
-//   return src('app/css/**/*.')
-// }
+function cleanbuild() {
+  return del('build/**/*', { force: true })
+}
+
+function buildcopy() {
+  return src([
+    'app/css/**/*.min.css',
+    'app/js/**/*.min.js',
+    'app/images/dest/**/*',
+    'app/**/*.html'
+  ], { base: 'app' })
+    .pipe(dest('build'))
+}
 
 function startwatch() {
   watch(['app/**/*.js', '!app/**/*.min.js'], scripts);
@@ -67,5 +77,6 @@ exports.scripts = scripts;
 exports.styles = styles;
 exports.images = images;
 exports.cleanimg = cleanimg;
+exports.build = series(cleanbuild, styles, scripts, images, buildcopy);
 
 exports.default = parallel(styles, scripts, browsersync, startwatch);

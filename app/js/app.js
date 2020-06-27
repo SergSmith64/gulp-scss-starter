@@ -1,1 +1,1 @@
-console.log("I am APP.JS !!! and more... ");
+console.log("I am APP.JS ");

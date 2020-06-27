@@ -30,11 +30,12 @@ function scripts() {
 }
 
 function styles() {
-  return src('app/sass/main.sass')
+  return src('app/index.sass')
   .pipe(sass())
   .pipe(concat('app.min.css'))
   .pipe(autoprefixer({ overrideBrowserslist: ['last 10 versions'], grid: true }))
-  .pipe(cleancss(( { level: { 1: { specialComments: 0 } } /*, format: 'beautify' */ } )))
+  // .pipe(cleancss(( { level: { 1: { specialComments: 0 } } /*, format: 'beautify' */ } )))
+  .pipe(cleancss(( { level: { 1: { specialComments: 0 } } , format: 'beautify' } )))
   .pipe(dest('app/css/'))
   .pipe(browserSync.stream())
 }
@@ -49,6 +50,10 @@ function images() {
 function cleanimg() {
   return del('app/images/dest/**/*', { force: true })
 }
+
+// function buildcopy() {
+//   return src('app/css/**/*.')
+// }
 
 function startwatch() {
   watch(['app/**/*.js', '!app/**/*.min.js'], scripts);

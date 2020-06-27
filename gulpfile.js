@@ -5,6 +5,7 @@ const uglify = require('gulp-uglify-es').default;
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cleancss = require('gulp-clean-css');
+const imagemin = require('gulp-imagemin');
 
 function browsersync() {
   browserSync.init({
@@ -36,15 +37,21 @@ function styles() {
   .pipe(browserSync.stream())
 }
 
+function images() {
+  return src('app/images/src/**/*')
+  .pipe(imagemin())
+  .pipe(dest('app/images/dest/'))
+}
+
 function startwatch() {
-  watch(['app/**/*.*', '!app/**/*.min.js'], scripts);
+  watch(['app/**/*.js', '!app/**/*.min.js'], scripts);
   watch('app/**/*.sass', styles);
-  // __ не обязательно __
-  // watch('/**/*.html').on('change', browserSync.reload);
+  watch('app/**/*.html').on('change', browserSync.reload);
 }
 
 exports.browsersync = browsersync;
 exports.scripts = scripts;
 exports.styles = styles;
+exports.images = images;
 
 exports.default = parallel(styles, scripts, browsersync, startwatch);

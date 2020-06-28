@@ -1,18 +1,13 @@
 body {
   font-size: 24px;
   font-family: serif;
-  color: green;
-  -webkit-box-sizing: border-box;
+  color: #175;
   box-sizing: border-box
 }
 .navbar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  padding: 0;
+  padding: 5px;
   width: 100%;
   color: #fff;
   background-color: brown;
@@ -25,40 +20,27 @@ body {
   margin: 3px
 }
 .navbar a:hover {
-  background-color: #000;
+  background-color: #404;
   color: #fff
 }
 .wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   background-color: #add8e6;
   padding-left: 30px;
   padding-right: 30px;
   margin: 0 auto;
-  width: 1024px
+  width: 800px
 }
 .wrap-img {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
   justify-content: space-around
 }
 .footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+  justify-content: space-evenly;
   align-items: center;
-  background-color: #a52323
+  background-color: #a52300
 }
 .footer__menu {
   padding: 8px;

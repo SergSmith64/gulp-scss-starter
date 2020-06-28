@@ -30,8 +30,8 @@ function scripts() {
 }
 
 function styles() {
-  return src('app/index.sass')
-    .pipe(sass())
+  return src('app/index.css')
+    // .pipe(sass())
     .pipe(concat('app.min.css'))
     .pipe(autoprefixer({ overrideBrowserslist: ['last 10 versions'], grid: true }))
     // .pipe(cleancss(( { level: { 1: { specialComments: 0 } } /*, format: 'beautify' */ } )))
@@ -67,7 +67,8 @@ function buildcopy() {
 
 function startwatch() {
   watch(['app/**/*.js', '!app/**/*.min.js'], scripts);
-  watch('app/**/*.sass', styles);
+  // watch('app/**/*.sass', styles);
+  watch(['app/**/*.css', '!app/**/*.min.css'], styles);
   watch('app/**/*.html').on('change', browserSync.reload);
   watch('app/images/src/**/*', images)
 }
@@ -79,4 +80,4 @@ exports.images = images;
 exports.cleanimg = cleanimg;
 exports.build = series(cleanbuild, styles, scripts, images, buildcopy);
 
-exports.default = parallel(styles, scripts, browsersync, startwatch);
+exports.default = parallel(styles, scripts, images, browsersync, startwatch);

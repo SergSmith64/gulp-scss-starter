@@ -1,0 +1,13 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 0 auto;
+    width: 800px;
+}
+.wrap-img {
+    display: flex;
+    justify-content: space-around
+}

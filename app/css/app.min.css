@@ -1,11 +1,16 @@
 body {
   font-size: 24px;
   font-family: serif;
-  color: #175;
+  color: #8a2be2;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box
 }
 .navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   padding: 5px;
   width: 100%;
@@ -24,7 +29,12 @@ body {
   color: #fff
 }
 .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   background-color: #add8e6;
   padding-left: 30px;
@@ -33,14 +43,23 @@ body {
   width: 800px
 }
 .wrap-img {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
   justify-content: space-around
 }
 .footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
   justify-content: space-evenly;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
-  background-color: #a52300
+  background-color: #8d4c02
 }
 .footer__menu {
   padding: 8px;
@@ -48,7 +67,7 @@ body {
   background-color: #1163a5
 }
 .footer p {
-  color: #fff;
+  color: #e7ec9a;
   font-size: 18px;
   text-align: center
 }
